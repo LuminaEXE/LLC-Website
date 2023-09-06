@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./index.css";
 
 export default class Nav extends Component {
@@ -7,17 +8,20 @@ export default class Nav extends Component {
       <div>
         <header>
           <nav className="navbar">
-            <a href="#" className="nav-item">
+            <a href="/" className="nav-item">
               Home
             </a>
-            <a href="#" className="nav-item">
+            <a href="/Hobbies" className="nav-item">
               Hobbies
             </a>
-            <a href="#" className="nav-item">
-              Achivements
+            <a href="/Achievements" className="nav-item">
+              Achievements
             </a>
-            <a href="#" className="nav-item">
+            <a href="/Contact" className="nav-item">
               Contact
+            </a>
+            <a href="/Family" className="nav-item">
+              Family
             </a>
           </nav>
         </header>
