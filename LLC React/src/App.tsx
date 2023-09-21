@@ -12,17 +12,19 @@ import "./App.css";
 import "./Nav";
 import Nav from "./Nav";
 import React from "react";
+import stf from "./states";
+import Stf from "./states";
 
-class txtP extends React.Component {
-  myRef: LegacyRef<HTMLParagraphElement> | undefined;
-  constructor(props: {} | Readonly<{}>) {
-    super(props);
-    this.myRef = React.createRef();
-  } 
-  render() {
-    return <p ref={this.myRef}></p>;
-  }
-}
+// class txtP extends React.Component {
+//   myRef: LegacyRef<HTMLParagraphElement> | undefined;
+//   constructor(props: {} | Readonly<{}>) {
+//     super(props);
+//     this.myRef = Re act.createRef();
+//   } 
+//   render() {
+//     return <p ref={this.myRef}></p>;
+//   }
+// }
 
 function opacity(delay: number = 0, duration: number = 1000) {
   const springs = useSpring({
@@ -83,10 +85,8 @@ function App() {
 
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={0.5}> 
-          <animated.div>
-            <p className="gay-balls" ></p>
-          </animated.div>
+        <ParallaxLayer offset={0} speed={0.5} className='gay-balls'> 
+          <Stf />
         </ParallaxLayer>
 
       </Parallax>
