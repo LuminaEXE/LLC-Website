@@ -1,30 +1,47 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import Nav from './components/Nav.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Nav
+  },
+  data(): { msg: string } {
+    return {
+      msg: 'Welcome to Your App'
+    }
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <body>
+    <div id="app">
+      <Nav />
+      <h1>{{ msg }}</h1>
+    </div>
+  </body>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+#app {
+  font-family: Poppins, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #ced9e4;
+  margin-top: 60px;
+  height: 100%;
+  min-height: 100%;
+  display: block;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+  min-height: 100%;
 }
 </style>
