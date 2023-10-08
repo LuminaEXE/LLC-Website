@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { onMounted } from "vue";
+//@ts-ignore
+import anime from '../../node_modules/animejs/lib/anime.es.js';
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
@@ -6,7 +9,30 @@ import { RouterLink, RouterView } from 'vue-router'
 	<header>
 		<div class="navbar">
 			<nav>
-				<RouterLink to="/Home" class="nav-item">Home</RouterLink>
+				<RouterLink to="/" class="moon"
+
+				
+					@mouseover="() => {
+						anime({ targets: '.moon', fill: '#E0B0FF', scale: [1, 1.1] });
+					}" 
+
+
+					@mouseleave="() => {
+						anime({ targets: '.moon', fill: '#fff' });
+					}" 
+
+
+					@click="() => console.log('clicked')"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 100" x="0px" y="0px" class="moon">
+						<path
+							d="M62.79,55.38A18.17,18.17,0,0,1,47.43,27.5,22.58,22.58,0,1,0,72.5,52.57,18.08,18.08,0,0,1,62.79,55.38Z" />
+					</svg>
+				</RouterLink>
+
+				<RouterLink to="/" class="nav-item">Home</RouterLink>
+				<RouterLink to="/About" class="nav-item">About</RouterLink>
+				<RouterLink to="/" class="nav-item">Home</RouterLink>
 				<RouterLink to="/About" class="nav-item">About</RouterLink>
 			</nav>
 		</div>
@@ -25,278 +51,300 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+.moon {
+	position: relative;
+	width: 45px;
+	height: 45px;
+	padding: 0;
+	fill: #fff;
+	top: 7px;
+	margin-left: 1rem;
+}
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-
-  min-height: 100vh;
+	font-family: "Poppins", sans-serif;
+	min-height: 100vh;
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 1rem 5%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 500;
+}
+
+.navbar {
+	position: fixed;
+	top: 0%;
+	left: 0;
+	padding-bottom: 20px;
+	width: 100%;
+	height: 70px;
+	background: rgba(31, 31, 31, 0.322);
+	backdrop-filter: blur(20px);
+	align-items: center;
+	justify-content: space-between;
+	z-index: 5;
 }
 
 .logo {
-  width: 40px;
+	width: 40px;
 }
 
 .nav-item {
-  position: relative;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 25px;
-  letter-spacing: -0.13px;
-  text-decoration: none;
-  margin-left: 2.5rem;
-  transition: all 0.5s ease;
+	position: relative;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: -0.13px;
+	text-decoration: none;
+	margin-left: 2.5rem;
+	transition: all 0.5s ease;
+	top: 25px;
+	margin-right: 1rem;
+	float: right;
 }
 
 .nav-item:hover {
-  color: rgb(168, 239, 255, 0.9);
+	color: rgba(255, 255, 255, 0.9);
 }
 
 .nav-item::after {
-  content: "";
-  position: absolute;
-  bottom: -0.3rem;
-  left: 50%;
-  width: 0;
-  height: 0.15rem;
-  transform: translateX(-50%);
-  background-color: rgb(168, 239, 255, 0.9);
-  transition: all 0.5s ease;
+	content: "";
+	position: absolute;
+	bottom: -0.3rem;
+	left: 50%;
+	width: 0;
+	height: 0.15rem;
+	transform: translateX(-50%);
+	background-color: rgba(255, 255, 255, 0.9);
+	transition: all 0.5s ease;
 }
 
 .nav-item:hover::after {
-  width: 100%;
+	width: 100%;
 }
 
 .icons {
-  position: absolute;
-  right: 5%;
-  font-size: 2.3rem;
-  color: #fff;
-  cursor: pointer;
-  display: none;
+	position: absolute;
+	right: 5%;
+	font-size: 2.3rem;
+	color: #fff;
+	cursor: pointer;
+	display: none;
 }
 
 #check {
-  display: none;
+	display: none;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
 }
 
 .content h1 {
-  font-size: 8rem;
-  font-weight: 600;
-  -webkit-text-stroke: 2px rgb(168, 239, 255, 1);
-  color: transparent;
-  transition: all 0.5s ease;
+	font-size: 8rem;
+	font-weight: 600;
+	-webkit-text-stroke: 2px rgb(168, 239, 255, 1);
+	color: transparent;
+	transition: all 0.5s ease;
 }
 
 .btn {
-  width: 180px;
-  height: 50px;
-  border-radius: 5px;
-  background: transparent;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  transition: all 0.3s ease-in;
+	width: 180px;
+	height: 50px;
+	border-radius: 5px;
+	background: transparent;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	transition: all 0.3s ease-in;
 }
 
 .btn:hover {
-  transform: translateY(-5px);
+	transform: translateY(-5px);
 }
 
 .light::before {
-  content: "";
-  position: absolute;
-  background-image: conic-gradient(
-    rgb(168, 239, 255, 1) 20deg,
-    transparent 150deg
-  );
-  width: 400%;
-  height: 400%;
-  border-radius: 5px;
-  animation: rotate 3s linear infinite;
+	content: "";
+	position: absolute;
+	background-image: conic-gradient(rgb(168, 239, 255, 1) 20deg,
+			transparent 150deg);
+	width: 400%;
+	height: 400%;
+	border-radius: 5px;
+	animation: rotate 3s linear infinite;
 }
 
 .light::after {
-  content: "Explore";
-  position: absolute;
-  width: 170px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  border-radius: 5px;
+	content: "Explore";
+	position: absolute;
+	width: 170px;
+	height: 40px;
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(35px);
+	-webkit-backdrop-filter: blur(35px);
+	color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	border-radius: 5px;
 }
 
 @keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
 
-  100% {
-    transform: rotate(360deg);
-  }
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 .background-video {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
 }
 
 @media (min-aspect-ratio: 16/9) {
-  .background-video {
-    width: 100%;
-    height: auto;
-  }
+	.background-video {
+		width: 100%;
+		height: auto;
+	}
 }
 
 @media (max-aspect-ratio: 4/3) {
-  .background-video {
-    width: auto;
-    height: 100%;
-  }
+	.background-video {
+		width: auto;
+		height: 100%;
+	}
 }
 
 @media (max-width: 900px) {
-  header {
-    padding: 1.3rem 5%;
-  }
+	header {
+		padding: 1.3rem 5%;
+	}
 
-  .content h1 {
-    font-size: 7rem;
-  }
+	.content h1 {
+		font-size: 7rem;
+	}
 }
 
 @media (max-width: 700px) {
-  header::before {
-    content: "";
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(50px);
-    z-index: -1;
-  }
+	header::before {
+		content: "";
+		top: 0;
+		left: 0;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(50px);
+		z-index: -1;
+	}
 
-  header::after {
-    content: "";
-    top: 0;
-    left: -100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: 0.8s;
-  }
+	header::after {
+		content: "";
+		top: 0;
+		left: -100%;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		transition: 0.8s;
+	}
 
-  .icons {
-    display: inline-flex;
-  }
+	.icons {
+		display: inline-flex;
+	}
 
-  #check:checked ~ .icons #menu-icon {
-    display: none;
-  }
+	#check:checked~.icons #menu-icon {
+		display: none;
+	}
 
-  .icons #close-icon {
-    display: none;
-  }
+	.icons #close-icon {
+		display: none;
+	}
 
-  #check:checked ~ .icons #close-icon {
-    display: block;
-  }
+	#check:checked~.icons #close-icon {
+		display: block;
+	}
 
-  .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(50px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
+	.navbar {
+		position: fixedf;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		height: 0;
+		background: rgba(0, 0, 0, 0.192);
+		backdrop-filter: blur(50px);
+		box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
 
-  #check:checked ~ .navbar {
-    height: 17.7rem;
-  }
+	#check:checked~.navbar {
+		height: 17.7rem;
+	}
 
-  .nav-item {
-    display: block;
-    font-size: 1.1rem;
-    margin: 2rem 0;
-    text-align: center;
-    transform: translateY(-50px);
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
+	.nav-item {
+		display: block;
+		font-size: 1.1rem;
+		margin: 2rem 0;
+		text-align: center;
+		transform: translateY(-50px);
+		opacity: 0;
+		transition: all 0.3s ease;
+	}
 
-  .nav-item:hover::after {
-    width: auto;
-  }
+	.nav-item:hover::after {
+		width: auto;
+	}
 
-  #check:checked ~ .navbar a {
-    transform: translateY(0);
-    opacity: 1;
-    transition-delay: calc(0.15s * var(--i));
-  }
+	#check:checked~.navbar a {
+		transform: translateY(0);
+		opacity: 1;
+		transition-delay: calc(0.15s * var(--i));
+	}
 }
 
 @media (max-width: 620px) {
-  .content h1 {
-    font-size: 5rem;
-  }
+	.content h1 {
+		font-size: 5rem;
+	}
 }
 
 @media (max-width: 450px) {
-  .content h1 {
-    font-size: 3rem;
-  }
-  
-  .btn {
-    width: 130px;
-  }
-  
-  .light::after {
-    width: 120px;
-    font-size: 0.9rem;
-  }
-}
+	.content h1 {
+		font-size: 3rem;
+	}
 
+	.btn {
+		width: 130px;
+	}
+
+	.light::after {
+		width: 120px;
+		font-size: 0.9rem;
+	}
+}
 </style>
