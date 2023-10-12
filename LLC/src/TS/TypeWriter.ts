@@ -4,7 +4,8 @@ class TypeWriter {
 		speed: number, 
 		element: HTMLElement | null, 
 		_addSpace?: boolean,
-		$delay: number = 0
+		$delay: number = 0,
+		afterRun: Function = function() {}
 		): [boolean, string] | undefined {
 		if(!TypeWriter.getHasWriten()) {
 			if (element == null) {
@@ -26,6 +27,7 @@ class TypeWriter {
 				}, speed);
 
 				if(wasSuccesful) {
+					afterRun();
 					return [true, "Succesfully wrote text"];
 				} else return [false, "Failed to write text"];
 			}
