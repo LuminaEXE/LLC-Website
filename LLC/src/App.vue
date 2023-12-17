@@ -12,6 +12,9 @@ import Home from './components/Home.vue'
 
 /*custom scroll bar*/
 
+* {
+	background-color: rgba(60, 60, 60, 0.66);
+}
 
 
 header {

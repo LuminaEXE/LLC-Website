@@ -9,25 +9,26 @@ import TypeWriter from "../TS/TypeWriter.ts"
 import Rellax from "rellax";
 import Cards from "../components/Cards.vue"
 
+import LOG from "../components/LOG"
+
 onMounted(() => {
   /* Observer for the cards */
   let $disp = false;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting && !$disp) {
-        anime({targets: '.card', opacity: [0, 1], translateY: [100, 0], duration: 1000, easing: 'easeInOutQuad'})
+        anime({targets: '.hTitle', opacity: [0, 1],translateY: [100,0], duration: 1000, easing: 'easeInOutQuad'})
         $disp = true;
       } /* disapear whe leaving view */
       else if (!entry.isIntersecting && $disp) {
-        anime({targets: '.card', opacity: [1, 0], translateY: [0, 100], duration: 1000, easing: 'easeInOutQuad'})
+        anime({targets: '.hTitle', opacity: [1, 0], translateY: [0, 100], duration: 1000, easing: 'easeInOutQuad'})
         $disp = false;
       }
     });
   });
+
   //@ts-ignore
-  observer.observe(document.querySelector(".page-content"));
-  //@ts-ignore
-  observer.observe(document.querySelector(".hTitle"));
+  //  observer.observe(document.querySelector(".hTitle"));
 
   //initate rellax parallax
   let rellax = new Rellax('.rellax');
@@ -45,18 +46,11 @@ onMounted(() => {
     true, 
     1600, 
     () => {
-      anime({
-        targets: '#moonX',
-        opacity: [0, 1],
-        duration: 4000,
-        delay: 1600,
-        easing: 'easeInOutQuad',
-      })
       anime ({
         targets: '.subT',
         opacity: [0, 1],
         duration: 1000,
-        delay: 3800,
+        delay: 1600,
         easing: 'easeInOutQuad',
       })
     }
@@ -103,7 +97,7 @@ onMounted(() => {
     <div class="txt">
       <h1 class="Title">
         <span class="gradient">Hey!</span>
-        <span id="titleText" class="rellax" data-rellax-speed="-4" data-rellax-zindex="0"
+        <span @click="()=>{LOG.test()}" id="titleText" class="rellax" data-rellax-speed="-4" data-rellax-zindex="0"
           @mouseover="() => {
             anime(
               {
@@ -137,13 +131,14 @@ onMounted(() => {
           }"
         ></span>
       </h1>
-      <p class="subT rellax" data-rellax-speed="-4.5" data-rellax-zindex="0">Scroll to view more</p>
+      <p class="subT rellax" data-rellax-speed="-4.8" data-rellax-zindex="0">Scroll to view more</p>
     </div>
     <div id="moonX"><img src="../assets/moon.png" width="1200" class="rellax"  data-rellax-speed="-1" data-rellax-zindex="20"/></div>
 
-    <h1 class="rellax hTitle" data-rellax-speed="-2" data-rellax-zindex="0">More about my hobbies:</h1>
-    <Cards class="rellax" data-rellax-speed="-2" data-rellax-zindex="0"/>
-
+    <div class="abMe">
+      <h1 class="aTitle rellax" data-rellax-speed="-4">About Me</h1>
+      <img src="../../public/me.jpeg" class="pfp rellax" data-rellax-speed="-3" data-rellax-zindex="0" />
+    </div>
     <h1 style=" margin-top: 157rem;"> and tahjuidshaukyhdkuays</h1>
   </main>
 </template>
@@ -160,6 +155,27 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+.abMe {
+  position: absolute;
+  top: 150%;
+  width: 100%;
+}
+
+.pfp {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  z-index: 10;
+  border: 2px solid #ffffff;
+  filter: drop-shadow(0px 0px 2px #ffffff);
+  fill: #ffffff;
+  position: absolute;
+  top: 125%;
+  left: -20%;
+}
 
 .subT {
   font-size: 1.5rem;
@@ -176,7 +192,7 @@ export default {
   z-index: 10;
 }
 
-.hTitle {
+.aTitle {
   font-size: 4rem;
   text-align: center;
   margin-top: 5rem;
@@ -188,8 +204,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 150%;
+  left: 12%;
+  margin-bottom: 99px;
 }
 
 .cardW {
@@ -293,4 +309,8 @@ export default {
   -webkit-text-fill-color: transparent;
   font-size: 4rem;
 }
+
+
+
+
 </style>
